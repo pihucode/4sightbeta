@@ -1,28 +1,40 @@
 <template>
-  <div id="app">
-    <img alt="Vue logo" src="./assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
+  <div>
+    <app-header></app-header>
+    <group-dnd-local></group-dnd-local>
+    <app-footer></app-footer>
   </div>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
+import Header from "./components/Header.vue";
+import Footer from "./components/Footer.vue";
+import GroupDnDLocal from "./components/GroupDnDLocal.vue";
 
 export default {
-  name: 'app',
   components: {
-    HelloWorld
+    "app-header": Header,
+    "app-footer": Footer,
+    "group-dnd-local": GroupDnDLocal
+  },
+  data() {
+    return {
+      //data
+    };
   }
-}
+};
 </script>
 
-<style>
-#app {
-  font-family: 'Avenir', Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
+<style lang="scss">
+/* Scoped means this styling applies only for this component */
+// $bg-color: rgb(54, 170, 228);
+$bg-color: #2a3439;
+
+div {
+  background-color: $bg-color;
+}
+
+body {
+  margin: 0;
 }
 </style>
