@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div id="app">
     <app-header></app-header>
     <group-dnd-local></group-dnd-local>
     <app-footer></app-footer>
@@ -28,9 +28,10 @@ export default {
 <style lang="scss">
 /* Scoped means this styling applies only for this component */
 // $bg-color: rgb(54, 170, 228);
-$bg-color: #2a3439;
+$bg-color: #373549;
+// 2a3439 old dark green color
 
-div {
+#app {
   background-color: $bg-color;
 }
 

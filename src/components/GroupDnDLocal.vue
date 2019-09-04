@@ -8,19 +8,25 @@
           <h2>Course Basket</h2>
 
           <!-- Roster Selector -->
-          <label>Roster:</label>
-          <select v-model="selectedRoster" v-on:change="loadCourses">
-            <option v-for="roster in rosterList">{{ roster }}</option>
-          </select>
+          <div class="roster">
+            <label>Roster:</label>
+            <select v-model="selectedRoster" v-on:change="loadCourses">
+              <option value disabled hidden>Select a roster</option>
+              <option v-for="roster in rosterList">{{ roster }}</option>
+            </select>
+          </div>
 
           <!-- Search Bar -->
-          <v-select
-            v-model="selectedCourse"
-            placeholder="Add a course"
-            @input="addToBasket(selectedCourse)"
-            :options="courseList"
-            class="style-chooser"
-          ></v-select>
+          <div class="searchbar">
+            <label>Course:</label>
+            <v-select
+              v-model="selectedCourse"
+              placeholder="Add a course"
+              @input="addToBasket(selectedCourse)"
+              :options="courseList"
+              class="style-chooser"
+            ></v-select>
+          </div>
         </div>
 
         <!-- Basket container -->
@@ -218,7 +224,7 @@
             @drop="onDrop('items6', $event)"
             :drop-placeholder="dropPlaceholder"
             :remove-on-drop-out="true"
-            class="container"
+            class="container container-top"
           >
             <Draggable v-for="item in items6" :key="item.id">
               <div class="draggable-item">
@@ -321,7 +327,7 @@ export default {
       courseList: [],
       search: "",
       selectedCourse: "",
-      selectedRoster: " ",
+      selectedRoster: "",
       rosterList: ["FA19", "SP19"],
       basket: [],
 
@@ -449,34 +455,65 @@ export default {
 <style lang="scss">
 // no scope else draggable container and v-select styling will not work
 
-// Variables
-$box-bg-color: #1f262a;
-$container-bg-color: rgb(78, 78, 82);
-$draggable-bg: #ffbf00;
+// Custom fonts
+@import url("https://fonts.googleapis.com/css?\
+family=Quicksand:500,600,700&display=swap");
 
-$draggable-text-color: #361b28;
-//  #1F262A;
+// Variables
+$box-bg-color: #272636;
+$container-bg-color: rgb(78, 78, 82);
+
+$draggable-bg: #f6b616;
+$draggable-text-color: #953502; //  #1F262A;
+$draggable-subtext-color: #be6a09;
 
 $ghost-bg-color: #ffc60b;
 $ghost-border: 2px dashed #ff8b00;
 
-$h2-text-color: #c0c0c0;
-$p-text-color: #c0c0c0;
-$p-font: Verdana, Arial, sans-serif;
+$h2-text-color: #f6f7f9;
+$p-text-color: #8491b4;
+$p-font: "Quicksand", Verdana, Arial, sans-serif;
 
-$select-bg: #c0c0c0;
+$select-bg: #f6f7f9;
 
 p {
+  margin: 12px 0;
+}
+
+p,
+label {
   color: $p-text-color;
-  font-style: $p-font;
+  font-size: 18px;
+  font-weight: 600;
+}
+
+h2 {
+  margin-bottom: 8px;
+}
+
+p,
+h2,
+label,
+.draggable-item {
+  font-family: $p-font;
+}
+
+.roster,
+.searchbar {
+  padding: 12px 0;
+}
+
+label {
+  padding-right: 14px;
 }
 
 .groups {
   display: flex;
   /* justify-content: stretch; */
-  margin-top: 50px;
-  margin-right: 50px;
+  margin: 24px;
+  margin-top: 42px;
 }
+
 .group {
   /* flex: 1; */
   margin: 8px;
@@ -484,7 +521,6 @@ p {
   width: 200px;
   min-height: 300px;
   background-color: $box-bg-color;
-  border-radius: 8px;
   // box-shadow: 0px 0px 16px darkslategray;
 }
 
@@ -494,23 +530,36 @@ p {
 
 .container {
   background-color: $container-bg-color;
-  padding: 6px 0;
+  padding: 8px 3px;
   min-height: 120px;
+  margin-bottom: 42px;
+  margin-top: 16px;
+}
+
+.top {
+  margin-bottom: 32px;
+}
+
+.group,
+.container {
+  border-radius: 8px;
 }
 
 .draggable-item {
-  padding: 4px;
-  margin: 6px 12px;
   background-color: $draggable-bg;
   color: $draggable-text-color;
   text-align: center;
+  font-family: $p-font;
+  font-weight: 700;
 }
 
 h2 {
   margin: 0;
   padding: 0;
-  font-size: 22px;
+  font-size: 20px;
+  font-weight: 700;
   color: $h2-text-color;
+  padding-top: 24px;
 }
 
 .ghost {
@@ -525,30 +574,50 @@ container {
   border-radius: 6px;
 }
 
-.subtext {
-  font-size: 16px;
-  text-align: right;
-  color: $draggable-text-color;
-  margin: 0;
+.draggable-item,
+.ghost {
+  padding: 4px;
+  margin: 6px;
 }
 
-//LOADING
-.hidden {
-  display: none;
+.subtext {
+  text-align: right;
+  color: $draggable-subtext-color;
+  margin: 0;
+  font-weight: 600;
 }
 
 /* Vue-select */
 @import "vue-select/src/scss/vue-select.scss";
 
-.v-select {
+.v-select,
+select {
   border-radius: 6px;
   background-color: $select-bg;
+  font-family: $p-font;
+  font-size: 16px;
+  margin-top: 12px;
+  // color: $p-text-color;
 }
 
-// .v-select :hover {
-//   background-color: white;
-//   transition-duration: 100ms;
-// }
+select {
+  width: 100%;
+  padding: 4px;
+}
+
+.v-select {
+  margin-bottom: 8px;
+}
+
+/* TODO: change cursor to mouse when hovered over dropdown
+"select :hover" does not work because the ":hover" functionality is not built
+into Vue. We need to implement this ourselves. Left out because not important.
+*/
+.v-select :hover {
+  cursor: pointer;
+  // background-color: white;
+  // transition-duration: 500ms;
+}
 
 // Prevents users from using the 'x' function of the search bar.
 // the 'x' function is buggy

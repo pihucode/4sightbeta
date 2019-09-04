@@ -15,7 +15,7 @@ export default {
 </script>
 
 <style scoped lang="scss">
-$header-bg: #2a3439;
+$header-bg: #373549;
 $h1-color: whitesmoke;
 
 header {
