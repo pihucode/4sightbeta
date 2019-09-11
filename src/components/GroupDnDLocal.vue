@@ -313,7 +313,7 @@
 <script>
 import vSelect from "vue-select";
 import { Container, Draggable } from "vue-smooth-dnd";
-import { applyDrag, generateItems } from "../utils/helpers";
+import { applyDrag } from "../utils/helpers";
 
 import SP19 from "../assets/localdata/sp19.json";
 import FA19 from "../assets/localdata/fa19.json";

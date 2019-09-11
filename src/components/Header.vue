@@ -1,15 +1,20 @@
 <template>
   <header>
-    <h1>{{ title }}</h1>
+    <!-- <div class="title-div"> -->
+    <h1 class="title">4sight</h1>
+    <h2 class="superscript">beta</h2>
+    <!-- </div> -->
+    <p>
+      In the future, a feature to save schedules will be added.
+      For now, please take screenshots!
+    </p>
   </header>
 </template>
 
 <script>
 export default {
   data() {
-    return {
-      title: "4sightbeta"
-    };
+    return {};
   }
 };
 </script>
@@ -20,11 +25,21 @@ $h1-color: whitesmoke;
 
 header {
   background: $header-bg;
-  padding: 10px;
+  padding-top: 42px;
+  text-align: center;
 }
 
-h1 {
+.title {
   color: $h1-color;
-  text-align: center;
+  display: inline;
+}
+
+.superscript {
+  font-size: 12px;
+  display: inline;
+}
+
+p {
+  padding-top: 32px;
 }
 </style>
